@@ -28,11 +28,20 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
 
-    const response = await fetch(`${API_URL}/api/auth/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password })
-    });
+    let response: Response;
+    try {
+      response = await fetch(`${API_URL}/api/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+    } catch {
+      setError(
+        "No se pudo conectar con el servidor. Espere a que la ventana Backend termine de iniciar o ejecute INICIAR.bat de nuevo."
+      );
+      setLoading(false);
+      return;
+    }
 
     if (!response.ok) {
       setError("Credenciales invalidas.");

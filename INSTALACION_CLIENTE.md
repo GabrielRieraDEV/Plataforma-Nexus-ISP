@@ -16,6 +16,10 @@ Guía para dejar la plataforma funcionando en Windows con un solo clic.
 
 No hace falta Docker ni PostgreSQL: la base de datos se guarda en `backend/data/nexus.db`.
 
+## Reinstalar dependencias (solo si hace falta)
+
+Si cambió el proyecto o algo falla tras una actualización, ejecute **`REINSTALAR_DEPS.bat`** una vez (vuelve a descargar Python y npm). En el uso normal, **`INICIAR.bat`** no vuelve a descargar si ya están instalados.
+
 ## Cómo iniciar la plataforma
 
 1. Copie la carpeta completa del proyecto a la laptop.
@@ -35,6 +39,11 @@ No hace falta Docker ni PostgreSQL: la base de datos se guarda en `backend/data/
 
 Cierre las ventanas de PowerShell tituladas **“Nexus ISP - Backend”** y **“Nexus ISP - Frontend”**, o pulse `Ctrl+C` en cada una.
 
+## Si sale un error y la ventana se cierra
+
+1. Vuelva a ejecutar **`INICIAR.bat`** — ahora la ventana queda con **“Presione una tecla…”** al final.
+2. Si sigue fallando, abra el archivo **`logs\iniciar.log`** en el bloc de notas y envíelo para soporte.
+
 ## Problemas frecuentes
 
 **“No se encontró Python”**  
@@ -43,8 +52,11 @@ Reinstale Python marcando “Add to PATH” y reinicie el equipo.
 **“No se encontró Node.js”**  
 Instale Node.js LTS y reinicie el equipo.
 
+**“Connection refused” en el navegador**  
+El panel (puerto 3000) tarda 1–2 minutos la primera vez. Espere a que `INICIAR.bat` diga **“Panel respondiendo en puerto 3000”** y deje abierta la ventana **“Nexus ISP - Frontend”** hasta ver el mensaje **Ready**.
+
 **El navegador no abre o muestra error**  
-Espere 30–60 segundos tras el primer inicio y abra manualmente: http://localhost:3000
+Abra manualmente: http://localhost:3000/login
 
 **Puerto en uso (3000 o 8000)**  
 Cierre otras aplicaciones que usen esos puertos o reinicie el equipo.
