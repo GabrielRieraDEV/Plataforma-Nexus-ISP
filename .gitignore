@@ -71,9 +71,12 @@ cover/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+<<<<<<< HEAD
 backend/data/
 logs/
 REINSTALAR_DEPS
+=======
+>>>>>>> parent of bf49c93 (sin docker)
 
 # Flask stuff:
 instance/

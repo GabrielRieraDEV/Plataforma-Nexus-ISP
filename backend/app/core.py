@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     app_name: str = "Nexus ISP API"
     debug: bool = False
-    database_url: str = "sqlite:///./data/nexus.db"
+    database_url: str = "postgresql+psycopg://postgres:postgres@db:5432/nexus_isp"
     jwt_secret: str = "change-me"
     jwt_algorithm: str = "HS256"
     access_token_minutes: int = 720
