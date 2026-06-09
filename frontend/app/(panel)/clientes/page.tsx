@@ -137,55 +137,55 @@ export default function ClientesPage() {
       <header className="card flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">Clientes</h1>
-          <p className="text-sm text-slate-600">Registro, busqueda, filtros y edicion.</p>
+          <p className="text-sm text-slate-300">Registro, busqueda, filtros y edicion.</p>
         </div>
-        <button className="rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium" onClick={loadClients}>
+        <button className="rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-white/10" onClick={loadClients}>
           Actualizar
         </button>
       </header>
 
-      {message && <section className="card text-sm font-medium text-emerald-700">{message}</section>}
-      {error && <section className="card text-sm font-medium text-rose-700">{error}</section>}
+      {message && <section className="card text-sm font-medium text-emerald-300">{message}</section>}
+      {error && <section className="card text-sm font-medium text-rose-300">{error}</section>}
 
       <section className="grid gap-6 xl:grid-cols-2">
         <article className="card">
           <h2 className="mb-3 text-xl font-semibold">Nuevo cliente</h2>
           <form className="grid gap-2 md:grid-cols-2" onSubmit={createClient}>
             <input
-              className="rounded-lg border border-slate-300 p-2"
+              className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
               placeholder="Nombre completo"
               value={form.full_name}
               onChange={(e) => setForm({ ...form, full_name: e.target.value })}
               required
             />
             <input
-              className="rounded-lg border border-slate-300 p-2"
+              className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
               placeholder="Telefono"
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
               required
             />
             <input
-              className="rounded-lg border border-slate-300 p-2"
+              className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
               placeholder="Email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
             />
             <input
-              className="rounded-lg border border-slate-300 p-2"
+              className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
               placeholder="Plan"
               value={form.plan_name}
               onChange={(e) => setForm({ ...form, plan_name: e.target.value })}
             />
             <input
-              className="rounded-lg border border-slate-300 p-2 md:col-span-2"
+              className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400 md:col-span-2"
               placeholder="Direccion"
               value={form.address}
               onChange={(e) => setForm({ ...form, address: e.target.value })}
               required
             />
             <input
-              className="rounded-lg border border-slate-300 p-2"
+              className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
               type="number"
               min="0"
               step="0.01"
@@ -193,7 +193,7 @@ export default function ClientesPage() {
               onChange={(e) => setForm({ ...form, monthly_fee: Number(e.target.value) })}
               required
             />
-            <label className="flex items-center gap-2 rounded-lg border border-slate-300 p-2">
+            <label className="flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400">
               <input
                 type="checkbox"
                 checked={form.first_month_free}
@@ -210,13 +210,13 @@ export default function ClientesPage() {
         <article className="card space-y-3">
           <h2 className="text-xl font-semibold">Busqueda y filtros</h2>
           <input
-            className="w-full rounded-lg border border-slate-300 p-2"
+            className="w-full rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
             placeholder="Buscar por nombre, telefono o ID"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
           <select
-            className="w-full rounded-lg border border-slate-300 p-2"
+            className="w-full rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value as "all" | "active" | "suspended")}
           >
@@ -224,18 +224,18 @@ export default function ClientesPage() {
             <option value="active">Activos</option>
             <option value="suspended">Suspendidos</option>
           </select>
-          <p className="text-sm text-slate-600">Resultados: {filteredClients.length}</p>
+          <p className="text-sm text-slate-300">Resultados: {filteredClients.length}</p>
         </article>
       </section>
 
       <section className="card overflow-x-auto">
         <h2 className="mb-3 text-xl font-semibold">Listado de clientes</h2>
         {loading ? (
-          <p className="text-sm text-slate-600">Cargando clientes...</p>
+          <p className="text-sm text-slate-300">Cargando clientes...</p>
         ) : (
           <table className="min-w-full text-sm">
             <thead>
-              <tr className="border-b bg-slate-50">
+              <tr className="border-b border-white/10 text-slate-300">
                 <th className="p-2 text-left">ID</th>
                 <th className="p-2 text-left">Nombre</th>
                 <th className="p-2 text-left">Telefono</th>
@@ -266,40 +266,40 @@ export default function ClientesPage() {
 
       {editing && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4">
-          <section className="w-full max-w-xl rounded-xl bg-white p-4 shadow-lg">
+          <section className="w-full max-w-xl rounded-xl border border-white/10 bg-slate-900 p-4 text-slate-100 shadow-2xl">
             <h3 className="mb-3 text-lg font-semibold">Editar cliente #{editing.id}</h3>
             <form className="grid gap-2 md:grid-cols-2" onSubmit={updateClient}>
               <input
-                className="rounded-lg border border-slate-300 p-2"
+                className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
                 value={editing.full_name}
                 onChange={(e) => setEditing({ ...editing, full_name: e.target.value })}
                 required
               />
               <input
-                className="rounded-lg border border-slate-300 p-2"
+                className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
                 value={editing.phone}
                 onChange={(e) => setEditing({ ...editing, phone: e.target.value })}
                 required
               />
               <input
-                className="rounded-lg border border-slate-300 p-2"
+                className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
                 value={editing.email || ""}
                 onChange={(e) => setEditing({ ...editing, email: e.target.value })}
               />
               <input
-                className="rounded-lg border border-slate-300 p-2"
+                className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
                 value={editing.plan_name}
                 onChange={(e) => setEditing({ ...editing, plan_name: e.target.value })}
                 required
               />
               <input
-                className="rounded-lg border border-slate-300 p-2 md:col-span-2"
+                className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400 md:col-span-2"
                 value={editing.address}
                 onChange={(e) => setEditing({ ...editing, address: e.target.value })}
                 required
               />
               <input
-                className="rounded-lg border border-slate-300 p-2"
+                className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
                 type="number"
                 min="0"
                 step="0.01"
@@ -308,7 +308,7 @@ export default function ClientesPage() {
                 required
               />
               <select
-                className="rounded-lg border border-slate-300 p-2"
+                className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
                 value={editing.service_status}
                 onChange={(e) =>
                   setEditing({

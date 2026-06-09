@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-3xl p-8">
       <section className="card">
-        <p className="text-sm text-slate-600">Redirigiendo...</p>
+        <p className="text-sm text-slate-300">Redirigiendo...</p>
       </section>
     </main>
   );

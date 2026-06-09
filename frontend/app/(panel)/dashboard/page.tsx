@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Ban, Clock, DollarSign, Users } from "lucide-react";
 
 import { apiRequest } from "@/lib/api";
 import { getToken } from "@/lib/session";
@@ -42,32 +43,55 @@ export default function DashboardPage() {
       <header className="card flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">Dashboard</h1>
-          <p className="text-sm text-slate-600">Resumen operativo del servicio.</p>
+          <p className="text-sm text-slate-300">Resumen operativo del servicio.</p>
         </div>
-        <button className="rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium" onClick={loadDashboard}>
+        <button
+          className="rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-white/10"
+          onClick={loadDashboard}
+        >
           Actualizar
         </button>
       </header>
 
-      {error && <section className="card text-sm font-medium text-rose-700">{error}</section>}
+      {error && <section className="card text-sm font-medium text-rose-300">{error}</section>}
 
       {stats && (
         <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          <article className="card border-l-4 border-emerald-500">
-            <p className="text-xs uppercase tracking-wide text-slate-500">Clientes activos</p>
-            <p className="text-2xl font-bold">{stats.active_clients}</p>
+          <article className="card flex items-center gap-4">
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/90 text-white">
+              <Users className="h-6 w-6" />
+            </span>
+            <div>
+              <p className="text-xs uppercase tracking-wide text-slate-400">Clientes activos</p>
+              <p className="text-2xl font-bold">{stats.active_clients}</p>
+            </div>
           </article>
-          <article className="card border-l-4 border-rose-500">
-            <p className="text-xs uppercase tracking-wide text-slate-500">Suspendidos</p>
-            <p className="text-2xl font-bold">{stats.suspended_clients}</p>
+          <article className="card flex items-center gap-4">
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-500/90 text-white">
+              <Ban className="h-6 w-6" />
+            </span>
+            <div>
+              <p className="text-xs uppercase tracking-wide text-slate-400">Suspendidos</p>
+              <p className="text-2xl font-bold">{stats.suspended_clients}</p>
+            </div>
           </article>
-          <article className="card border-l-4 border-amber-500">
-            <p className="text-xs uppercase tracking-wide text-slate-500">Pendientes</p>
-            <p className="text-2xl font-bold">{stats.pending_payments}</p>
+          <article className="card flex items-center gap-4">
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/90 text-white">
+              <Clock className="h-6 w-6" />
+            </span>
+            <div>
+              <p className="text-xs uppercase tracking-wide text-slate-400">Pendientes</p>
+              <p className="text-2xl font-bold">{stats.pending_payments}</p>
+            </div>
           </article>
-          <article className="card border-l-4 border-blue-500">
-            <p className="text-xs uppercase tracking-wide text-slate-500">Cobrado este mes</p>
-            <p className="text-2xl font-bold">${stats.payments_this_month.toFixed(2)}</p>
+          <article className="card flex items-center gap-4">
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/90 text-white">
+              <DollarSign className="h-6 w-6" />
+            </span>
+            <div>
+              <p className="text-xs uppercase tracking-wide text-slate-400">Cobrado este mes</p>
+              <p className="text-2xl font-bold">${stats.payments_this_month.toFixed(2)}</p>
+            </div>
           </article>
         </section>
       )}
@@ -76,13 +100,13 @@ export default function DashboardPage() {
         <section className="card">
           <h2 className="mb-3 text-xl font-semibold">Clientes pendientes</h2>
           <div className="space-y-2">
-            {pendingClients.length === 0 && <p className="text-sm text-slate-500">No hay pendientes.</p>}
+            {pendingClients.length === 0 && <p className="text-sm text-slate-400">No hay pendientes.</p>}
             {pendingClients.map((client) => (
-              <article key={client.id} className="rounded-lg border border-amber-200 bg-amber-50 p-3">
+              <article key={client.id} className="rounded-lg border border-amber-400/30 bg-amber-400/10 p-3">
                 <p className="font-medium">
                   #{client.id} - {client.full_name}
                 </p>
-                <p className="text-sm text-slate-700">Telefono: {client.phone}</p>
+                <p className="text-sm text-slate-300">Telefono: {client.phone}</p>
               </article>
             ))}
           </div>
@@ -92,16 +116,16 @@ export default function DashboardPage() {
           <h2 className="mb-3 text-xl font-semibold">Pagos recientes</h2>
           <table className="min-w-full text-sm">
             <thead>
-              <tr className="border-b bg-slate-50">
-                <th className="p-2 text-left">Fecha</th>
-                <th className="p-2 text-left">Cliente ID</th>
-                <th className="p-2 text-left">Periodo</th>
-                <th className="p-2 text-left">Monto</th>
+              <tr className="border-b border-white/10 text-slate-300">
+                <th className="p-2 text-left font-medium">Fecha</th>
+                <th className="p-2 text-left font-medium">Cliente ID</th>
+                <th className="p-2 text-left font-medium">Periodo</th>
+                <th className="p-2 text-left font-medium">Monto</th>
               </tr>
             </thead>
             <tbody>
               {recentPayments.map((payment) => (
-                <tr key={payment.id} className="border-b">
+                <tr key={payment.id} className="border-b border-white/5">
                   <td className="p-2">{new Date(payment.paid_at).toLocaleDateString("es-DO")}</td>
                   <td className="p-2">#{payment.client_id}</td>
                   <td className="p-2">{payment.period_label}</td>

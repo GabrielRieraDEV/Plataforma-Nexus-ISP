@@ -2,8 +2,8 @@ import "./globals.css";
 import { ReactNode } from "react";
 
 export const metadata = {
-  title: "Nexus ISP",
-  description: "Sistema de gestion de clientes y pagos"
+  title: "NEXUS IPS",
+  description: "Conectamos salud, comunidad y futuro"
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

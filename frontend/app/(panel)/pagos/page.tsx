@@ -97,21 +97,21 @@ export default function PagosPage() {
       <header className="card flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">Pagos</h1>
-          <p className="text-sm text-slate-600">Registro de pagos e historial reciente.</p>
+          <p className="text-sm text-slate-300">Registro de pagos e historial reciente.</p>
         </div>
-        <button className="rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium" onClick={loadData}>
+        <button className="rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-white/10" onClick={loadData}>
           Actualizar
         </button>
       </header>
 
-      {message && <section className="card text-sm font-medium text-emerald-700">{message}</section>}
-      {error && <section className="card text-sm font-medium text-rose-700">{error}</section>}
+      {message && <section className="card text-sm font-medium text-emerald-300">{message}</section>}
+      {error && <section className="card text-sm font-medium text-rose-300">{error}</section>}
 
       <section className="card">
         <h2 className="mb-3 text-xl font-semibold">Registrar pago</h2>
         <form className="grid gap-2 md:grid-cols-2" onSubmit={createPayment}>
           <select
-            className="rounded-lg border border-slate-300 p-2"
+            className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
             value={form.client_id}
             onChange={(e) => setForm({ ...form, client_id: e.target.value })}
             required
@@ -124,7 +124,7 @@ export default function PagosPage() {
             ))}
           </select>
           <input
-            className="rounded-lg border border-slate-300 p-2"
+            className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
             type="number"
             min="0"
             step="0.01"
@@ -133,21 +133,21 @@ export default function PagosPage() {
             required
           />
           <input
-            className="rounded-lg border border-slate-300 p-2"
+            className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
             type="date"
             value={form.paid_at}
             onChange={(e) => setForm({ ...form, paid_at: e.target.value })}
             required
           />
           <input
-            className="rounded-lg border border-slate-300 p-2"
+            className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400"
             placeholder="Periodo (YYYY-MM)"
             value={form.period_label}
             onChange={(e) => setForm({ ...form, period_label: e.target.value })}
             required
           />
           <input
-            className="rounded-lg border border-slate-300 p-2 md:col-span-2"
+            className="rounded-lg border border-white/15 bg-white/5 p-2 text-slate-100 placeholder:text-slate-400 md:col-span-2"
             placeholder="Nota opcional"
             value={form.note}
             onChange={(e) => setForm({ ...form, note: e.target.value })}
@@ -161,11 +161,11 @@ export default function PagosPage() {
       <section className="card overflow-x-auto">
         <h2 className="mb-3 text-xl font-semibold">Historial de pagos</h2>
         {loading ? (
-          <p className="text-sm text-slate-600">Cargando pagos...</p>
+          <p className="text-sm text-slate-300">Cargando pagos...</p>
         ) : (
           <table className="min-w-full text-sm">
             <thead>
-              <tr className="border-b bg-slate-50">
+              <tr className="border-b border-white/10 text-slate-300">
                 <th className="p-2 text-left">Fecha</th>
                 <th className="p-2 text-left">Cliente</th>
                 <th className="p-2 text-left">Periodo</th>
